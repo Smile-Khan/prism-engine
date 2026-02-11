@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: prism-command-service
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/prism_db
+    username: smile_admin
+    password: secure_pass
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update

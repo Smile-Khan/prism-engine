@@ -1,0 +1,29 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: prism-search-service
+
+  # Java 21 Performance: Virtual threads for non-blocking I/O
+  threads:
+    virtual:
+      enabled: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: prism-search-group
+      # FIX: Changed from 'latest' to 'earliest' to capture missed events
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+  elasticsearch:
+    uris: http://localhost:9200
+
+# Professional logging for troubleshooting the CDC stream
+logging:
+  level:
+    com.smile.prism.search: DEBUG
+    org.springframework.kafka: INFO

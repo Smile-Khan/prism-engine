@@ -7,7 +7,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=pathan_admin
+      - POSTGRES_USER=smile_admin
       - POSTGRES_PASSWORD=secure_pass
       - POSTGRES_DB=prism_db
     command: ["postgres", "-c", "wal_level=logical"]
