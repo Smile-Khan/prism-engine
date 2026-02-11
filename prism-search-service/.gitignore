@@ -1,33 +1,44 @@
-HELP.md
+# --- Build Tools (Maven) ---
 target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### STS ###
+# --- JetBrains (IntelliJ IDEA) ---
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+cmake-build-*/
+
+# --- VS Code ---
+.vscode/
+
+# --- Eclipse/STS ---
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
-.sts4-cache
+.sts4-cache/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+# --- Operating System ---
+.DS_Store
+Thumbs.db
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# --- Spring Boot & Logs ---
+HELP.md
+logs/
+*.log
 
-### VS Code ###
-.vscode/
+# --- Local Environment Configuration ---
+# (Ignore local overrides to prevent credential leaks)
+**/src/main/resources/application-local.yml
