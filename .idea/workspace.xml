@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51cd5f9e-4b68-47a6-8e09-8b0f837fd4fd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prism-command-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/prism-command-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prism-command-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/prism-command-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prism-search-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/prism-search-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prism-search-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/prism-search-service/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="51cd5f9e-4b68-47a6-8e09-8b0f837fd4fd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +38,7 @@
   "keyToString": {
     "Application.PrismCommandServiceApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/command-persistence-logic",
+    "git-widget-placeholder": "feature/search-indexing-logic",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
