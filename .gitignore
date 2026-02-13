@@ -1,25 +1,49 @@
-# Build
+# ========================================================================
+# PRISM ENGINE - INDUSTRIAL GITIGNORE
+# ========================================================================
+
+# --- Build Tools (Maven) ---
 target/
-out/
-build/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
-# IDE
+# --- JetBrains (IntelliJ IDEA) ---
 .idea/
-*.iml
 *.iws
+*.iml
 *.ipr
-.vscode/
-.settings/
-.classpath
-.project
+out/
+cmake-build-*/
 
-# OS
+# --- VS Code ---
+.vscode/
+
+# --- Eclipse/STS ---
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+# --- Operating System ---
 .DS_Store
 Thumbs.db
 
-# Secrets (Standard Practice)
-**/application-local.yml
-
-# Others
+# --- Spring Boot & Logs ---
 HELP.md
-.mvn/wrapper/maven-wrapper.jar
+logs/
+*.log
+
+# --- Local Environment Configuration ---
+# Prevents sensitive local developer settings from being committed
+**/src/main/resources/application-local.yml
+**/src/main/resources/application-dev.yml
