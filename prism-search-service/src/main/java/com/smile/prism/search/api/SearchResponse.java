@@ -2,6 +2,7 @@ package com.smile.prism.search.api;
 
 import com.smile.prism.search.model.EventDocument;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Standardized Search Response for the Prism Discovery Engine.
@@ -12,6 +13,11 @@ import java.util.List;
  */
 public record SearchResponse(
         long totalHits,
-        List<EventDocument> results,
+        List<SearchResult> results,
         String status
-) {}
+) {
+    public record SearchResult(
+            EventDocument document,
+            Map<String, List<String>> highlights
+    ) {}
+}

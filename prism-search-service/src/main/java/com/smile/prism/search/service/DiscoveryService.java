@@ -10,15 +10,14 @@ import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.query.HighlightQuery;
 import org.springframework.data.elasticsearch.core.query.Query;
+import org.springframework.data.elasticsearch.core.query.highlight.Highlight;
+import org.springframework.data.elasticsearch.core.query.highlight.HighlightField;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Advanced Discovery Service utilizing Elasticsearch Native Query DSL.
- * Implements Fuzzy Search and Category Filtering.
- */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -27,43 +26,41 @@ public class DiscoveryService {
     private final ElasticsearchOperations elasticsearchOperations;
 
     public SearchResponse discover(DiscoveryRequest request) {
-        log.info("Executing Advanced Discovery: query='{}', category='{}'", request.query(), request.category());
+        log.info("Executing Highlighting Discovery for: {}", request.query());
 
-        // 1. Build the Multi-Match Query with Fuzziness
-        // This searches the 'title' field and allows for 1-2 character typos (AUTO)
+        // Configure highlighting for the 'title' field
+        HighlightQuery highlightQuery = new HighlightQuery(
+                new Highlight(List.of(new HighlightField("title"))),
+                EventDocument.class
+        );
+
         Query query = NativeQuery.builder()
                 .withQuery(q -> q
                         .bool(b -> {
-                            b.must(m -> m
-                                    .multiMatch(mm -> mm
-                                            .fields("title")
-                                            .query(request.query())
-                                            .fuzziness("AUTO")
-                                    )
-                            );
-                            // 2. Add Category Filter if provided
+                            b.must(m -> m.multiMatch(mm -> mm
+                                    .fields("title")
+                                    .query(request.query())
+                                    .fuzziness("AUTO")));
+
                             if (request.category() != null && !request.category().isBlank()) {
-                                b.filter(f -> f
-                                        .term(t -> t
-                                                .field("category")
-                                                .value(request.category())
-                                        )
-                                );
+                                b.filter(f -> f.term(t -> t.field("category").value(request.category())));
                             }
                             return b;
                         })
                 )
+                .withHighlightQuery(highlightQuery)
                 .withPageable(PageRequest.of(request.page(), request.size()))
                 .build();
 
-        // 3. Execute Search
         SearchHits<EventDocument> searchHits = elasticsearchOperations.search(query, EventDocument.class);
 
-        // 4. Map Results
-        List<EventDocument> results = searchHits.getSearchHits().stream()
-                .map(SearchHit::getContent)
+        List<SearchResponse.SearchResult> results = searchHits.getSearchHits().stream()
+                .map(hit -> new SearchResponse.SearchResult(
+                        hit.getContent(),
+                        hit.getHighlightFields()
+                ))
                 .toList();
 
-        return new SearchResponse((int) searchHits.getTotalHits(), results, "SUCCESS");
+        return new SearchResponse(searchHits.getTotalHits(), results, "SUCCESS");
     }
 }
